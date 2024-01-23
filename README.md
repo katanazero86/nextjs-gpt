@@ -30,3 +30,38 @@ Would you like to customize the default import alias (@/*)? No
 ```
 OPENAI_API_KEY=YOUR_API_KEY
 ```
+
+**3. API 요청할 코드 작성**
+
+- https://platform.openai.com/examples   
+위 링크를 가면, 친절하게 다양한 예제들을 제공해주고 있다.
+- `npm i -S openai`
+- 첫번째 API 요청 코드 작성해보기
+- test 용 api 하나 작성
+```
+// app/api/hello/route.ts
+export async function GET(request: Request, response: Response) {
+    return Response.json('GET: hello api');
+}
+```
+
+```
+// app/services/openAiTestService.ts
+import OpenAI from "openai";
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
+
+export async function openAiMain() {
+    const completion = await openai.chat.completions.create({
+        messages: [{ role: "system", content: "You are a helpful assistant." }],
+        model: "gpt-3.5-turbo",
+    });
+
+    console.log(completion.choices[0]);
+}
+```
+
+- 429 에러(요청량 초과)가 발생하면, 크레딧이 없는거지 결제를 해야한다.(저는 100달러 충전 부가세 포함 110달러)
+![img.png](imgs/img3.png)
+![img.png](imgs/img4.png)
