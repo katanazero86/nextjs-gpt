@@ -2,4 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+    width: 100%;
+    height: 100%;
+}
 
+body {
+    max-width: 650px;
+    margin: 0 auto;
+    overflow-y: hidden;
+    min-width: 370px;
+}
+
+#app-main {
+    height: 100%;
+}

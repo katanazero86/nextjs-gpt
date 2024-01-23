@@ -1,19 +1,17 @@
 import OpenAI from "openai";
 
-export interface Message {
-    role: 'user' | 'system';
-    content: string;
-}
-
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
-export async function main(messageObj: Message) {
-    const completionStream = await openai.chat.completions.create({
-        messages: [{ role: "system", content: "You are a helpful assistant." }, messageObj],
+export async function main(messages: any) {
+    // messages: [{ role: "system", content: "You are a helpful assistant." }],
+    return openai.chat.completions.create({
+        messages: [
+            {role: 'system', content: 'You are a helpful assistant.'},
+            ...messages
+        ],
         model: "gpt-3.5-turbo",
-        stream: true
+        stream: true,
+        max_tokens: 350, // 생성되는 텍스트 최대 길이
     });
-    console.log(completionStream);
-    return completionStream;
 }
