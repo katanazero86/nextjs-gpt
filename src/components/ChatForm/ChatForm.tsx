@@ -5,14 +5,14 @@ import Messages from "@/components/ChatForm/Messages/Messages";
 
 export default function ChatForm() {
 
-    const {messages, input, handleInputChange, handleSubmit, stop, isLoading} = useChat({
+    const {messages, input, handleInputChange, handleSubmit, stop, isLoading } = useChat({
         api: '/api/openai',
         onError(error) {
             console.error(error)
         },
         initialInput: '',
         onFinish(message) {
-
+            console.log(message);
         },
     });
 
