@@ -37,7 +37,7 @@ OPENAI_API_KEY=YOUR_API_KEY
 - https://sdk.vercel.ai/docs/guides/providers/openai
 - https://sdk.vercel.ai/docs/api-reference/use-chat
 - https://platform.openai.com/docs/guides/text-generation/chat-completions-api   
-- https://platform.openai.com/tokenizer
+- https://platform.openai.com/tokenizer   
 위 링크를 가면, 친절하게 다양한 예제들을 제공해주고 있다.
 - `npm i -S openai ai`
 - 첫번째 API 요청 코드 작성해보기
