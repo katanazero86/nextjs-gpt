@@ -1,6 +1,5 @@
 'use client';
 
-import {useState} from 'react';
 import {ChatRequestOptions} from "ai";
 
 interface InputFormProps {
