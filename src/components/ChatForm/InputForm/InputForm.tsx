@@ -1,6 +1,8 @@
 'use client';
 
 import {ChatRequestOptions} from "ai";
+import BasicButton from "@/components/Buttons/BasicButton/BasicButton";
+import OutlineButton from "@/components/Buttons/OutlineButton/OutlineButton";
 
 interface InputFormProps {
     onSubmit: (e: React.FormEvent<HTMLFormElement>, chatRequestOptions?: ChatRequestOptions) => void;
@@ -15,7 +17,7 @@ export default function InputForm({onSubmit, onChange, onStop, value, isLoading}
     return (
         <form className='py-2 flex items-center' onSubmit={onSubmit}>
             <input
-                className='flex-auto appearance-none border rounded py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline focus:border-indigo-700'
+                className='flex-auto appearance-none border rounded py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline focus:border-indigo-700 mr-2'
                 type='text'
                 placeholder='질문을 입력하세요.'
                 value={value}
@@ -23,18 +25,14 @@ export default function InputForm({onSubmit, onChange, onStop, value, isLoading}
                 disabled={isLoading}
             />
             {isLoading ?
-                <button
-                    type="button"
-                    className="ml-2 text-indigo-700 hover:bg-indigo-700 hover:text-white border border-indigo-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    onClick={onStop}>
+                <OutlineButton onClick={onStop}>
                     중지
-                </button>
+                </OutlineButton>
                 :
-                <button
-                    className='ml-2 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                    type='submit'>
+                <BasicButton type='submit'>
                     전송
-                </button>}
+                </BasicButton>
+            }
         </form>
     )
 }
