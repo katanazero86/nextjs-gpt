@@ -53,6 +53,7 @@ export class OpenAiServices {
    }
 
    async generateImage() {
+       // TODO: 이미지 생성 프롬프트 작성 해야함.
        const response = await this.openai.images.generate({
            model: "dall-e-3",
            prompt: "a white siamese cat",

@@ -95,3 +95,17 @@ presence_penalty: 새로운 토픽이나 아이디어를 도입할 가능성을 
 - 서버 사이드 렌더링(SSR)은 웹 애플리케이션에서 초기 페이지 로드 시 서버에서 필요한 HTML, CSS 및 JavaScript를 렌더링하는 방식입니다. 기존의 클라이언트 사이드 렌더링(CSR)은 웹 브라우저에서 JavaScript를 통해
 
 133자, 98 토큰 -> 100 토큰을 걸어두었기에 짤린거임
+
+---
+
+- image 생성 부분 작성
+- DALL-E-3 모델을 사용하여, 이미지를 생성하도록 함.
+- 진행하면서, 컴포넌트 분리 및 추가적으로 아래 패키지들을 설치
+
+```
+class-variance-authority
+clsx
+tailwind-merge
+```
+
+- CVA(class-variance-authority) 를 적용한 이유는, 동적으로 tailwind css 를 작성하는 코드를 처리하려면 복잡해지고 어려워지는 부분때문이다. 이를 사용하면 읽기 쉽고 유지보수가 쉬워진다.
