@@ -1,8 +1,9 @@
 'use client';
 
 import {useState} from "react";
-import BasicButton from "@/components/Buttons/BasicButton/BasicButton";
-import LoadingButton from "@/components/Buttons/LoadingButton/LoadingButton";
+import BasicButton from "@/components/Atoms/Buttons/BasicButton/BasicButton";
+import LoadingButton from "@/components/Atoms/Buttons/LoadingButton/LoadingButton";
+import RadioButton from "@/components/Atoms/Buttons/RadioButton/RadioButton";
 
 interface CatAndDogTypes {
     [key: string]: string
@@ -46,16 +47,9 @@ export default function ImageForm() {
             return (
                 <>
                     {catType.map(cat => (<div key={cat} className="flex items-center mb-4">
-                        <label
-                            className="ms-2 text-sm text-teal-600 flex items-center">
-                            <input type="radio"
-                                   name='catType'
-                                   value={cat}
-                                   checked={imageForm.catType === cat}
-                                   onChange={handleChange}
-                                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                            <span className='pl-2'>{CAT_AND_DOG_TYPES[cat]}</span>
-                        </label>
+                        <RadioButton name='catType' value={cat} checked={imageForm.catType === cat} onChange={handleChange} color='teal'>
+                            {CAT_AND_DOG_TYPES[cat]}
+                        </RadioButton>
                     </div>))}
                 </>
             )
@@ -63,16 +57,9 @@ export default function ImageForm() {
             return (
                 <>
                     {dogType.map(dog => (<div key={dog} className="flex items-center mb-4">
-                        <label
-                            className="ms-2 text-sm text-teal-600 flex items-center">
-                            <input type="radio"
-                                   name='dogType'
-                                   value={dog}
-                                   checked={imageForm.dogType === dog}
-                                   onChange={handleChange}
-                                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                            <span className='pl-2'>{CAT_AND_DOG_TYPES[dog]}</span>
-                        </label>
+                        <RadioButton name='catType' value={dog} checked={imageForm.dogType === dog} onChange={handleChange} color='teal'>
+                            {CAT_AND_DOG_TYPES[dog]}
+                        </RadioButton>
                     </div>))}
                 </>
             )
@@ -109,67 +96,32 @@ export default function ImageForm() {
         <form className='w-full' onSubmit={handleSubmit}>
             <div>
                 <div className="flex items-center mb-4">
-                    <label
-                        className="ms-2 text-sm text-indigo-600 flex items-center">
-                        <input type="radio"
-                               name='animal'
-                               value='cat'
-                               checked={imageForm.animal === 'cat'}
-                               onChange={handleChange}
-                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                        <span className='pl-2'>고양이</span>
-                    </label>
+                    <RadioButton name='animal' value='cat' checked={imageForm.animal === 'cat'} onChange={handleChange}>
+                        고양이
+                    </RadioButton>
                 </div>
                 <div className="flex items-center">
-                    <label
-                        className="ms-2 text-sm text-indigo-600 flex items-center">
-                        <input type="radio"
-                               name='animal'
-                               value='dog'
-                               checked={imageForm.animal === 'dog'}
-                               onChange={handleChange}
-                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                        <span className='pl-2'>강아지</span>
-                    </label>
+                    <RadioButton name='animal' value='dog' checked={imageForm.animal === 'dog'} onChange={handleChange}>
+                        강아지
+                    </RadioButton>
                 </div>
             </div>
             <hr className="h-px my-4 bg-gray-400 border-0"/>
             <div>
                 <div className="flex items-center mb-4">
-                    <label
-                        className="ms-2 text-sm text-pink-600 flex items-center">
-                        <input type="radio"
-                               name='color'
-                               value='black'
-                               checked={imageForm.color === 'black'}
-                               onChange={handleChange}
-                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                        <span className='pl-2'>검정색</span>
-                    </label>
+                    <RadioButton name='color' value='black' checked={imageForm.color === 'black'} onChange={handleChange} color='pink'>
+                        검정색
+                    </RadioButton>
                 </div>
                 <div className="flex items-center mb-4">
-                    <label
-                        className="ms-2 text-sm text-pink-600 flex items-center">
-                        <input type="radio"
-                               name='color'
-                               value='white'
-                               checked={imageForm.color === 'white'}
-                               onChange={handleChange}
-                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                        <span className='pl-2'>하얀색</span>
-                    </label>
+                    <RadioButton name='color' value='white' checked={imageForm.color === 'white'} onChange={handleChange} color='pink'>
+                        하얀색
+                    </RadioButton>
                 </div>
                 <div className="flex items-center">
-                    <label
-                        className="ms-2 text-sm text-pink-600 flex items-center">
-                        <input type="radio"
-                               name='color'
-                               value='brown'
-                               checked={imageForm.color === 'brown'}
-                               onChange={handleChange}
-                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                        <span className='pl-2'>갈색</span>
-                    </label>
+                    <RadioButton name='color' value='brown' checked={imageForm.color === 'brown'} onChange={handleChange} color='pink'>
+                        갈색
+                    </RadioButton>
                 </div>
             </div>
             <hr className="h-px my-4 bg-gray-400 border-0"/>
@@ -177,7 +129,7 @@ export default function ImageForm() {
                 {renderType()}
             </div>
             {isLoading ? <LoadingButton wFull/> : <BasicButton type='submit' wFull>
-                생성 요청하기
+                이미지 생성 요청하기
             </BasicButton>}
         </form>
     )

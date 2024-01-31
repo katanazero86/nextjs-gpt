@@ -1,8 +1,8 @@
 'use client';
 
 import {ChatRequestOptions} from "ai";
-import BasicButton from "@/components/Buttons/BasicButton/BasicButton";
-import OutlineButton from "@/components/Buttons/OutlineButton/OutlineButton";
+import BasicButton from "@/components/Atoms/Buttons/BasicButton/BasicButton";
+import OutlineButton from "@/components/Atoms/Buttons/OutlineButton/OutlineButton";
 
 interface InputFormProps {
     onSubmit: (e: React.FormEvent<HTMLFormElement>, chatRequestOptions?: ChatRequestOptions) => void;
