@@ -129,5 +129,9 @@ Create an image showing a ${color} ${animal === 'dog' ? dogType : catType} ${ani
 - 이미지 업로드를 위한, Cloudinary 계정 생성 및 저장소 생성
 - 무료 사용자는 기본으로 클라우드 용량 100MB 제공
 - settings - Account 를 가면 클라우드 이름 변경가능
+- settings - Upload 를 가면, 프리셋 설정 가능
 
+![img.png](imgs/img8.png)
+
+- 생성되는 이미지 용량이 크다보니, 클라우디너리 업로드 시 webp 포맷으로 변경하여 업로드를 한다.
   
