@@ -52,11 +52,13 @@ export class OpenAiServices {
        });
    }
 
-   async generateImage() {
-       // TODO: 이미지 생성 프롬프트 작성 해야함.
+   async generateImage(animal: string, color: string, catType: string, dogType: string) {
+       // I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: a white siamese cat
+       const prompt = `Create an image showing a ${color} ${animal === 'dog' ? dogType : catType} ${animal} running on a green lawn. The image should not include any human elements such as hands, feet, or any other human features.`;
+       console.log(prompt);
        const response = await this.openai.images.generate({
            model: "dall-e-3",
-           prompt: "a white siamese cat",
+           prompt,
            n: 1,
            quality: "standard",
            size: "1024x1024",

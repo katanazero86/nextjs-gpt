@@ -57,7 +57,7 @@ export default function ImageForm() {
             return (
                 <>
                     {dogType.map(dog => (<div key={dog} className="flex items-center mb-4">
-                        <RadioButton name='catType' value={dog} checked={imageForm.dogType === dog} onChange={handleChange} color='teal'>
+                        <RadioButton name='dogType' value={dog} checked={imageForm.dogType === dog} onChange={handleChange} color='teal'>
                             {CAT_AND_DOG_TYPES[dog]}
                         </RadioButton>
                     </div>))}

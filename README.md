@@ -109,3 +109,25 @@ tailwind-merge
 ```
 
 - CVA(class-variance-authority) 를 적용한 이유는, 동적으로 tailwind css 를 작성하는 코드를 처리하려면 복잡해지고 어려워지는 부분때문이다. 이를 사용하면 읽기 쉽고 유지보수가 쉬워진다.
+
+- 이미지 생성을 위한 프롬프트 엔지니어링 진행
+```
+I'm going to create an image of a dog or a cat. Specifically, make an image of a dog and the color is brown and the species is golden retriever.
+```
+
+![img.png](imgs/img6.png)
+
+```
+Create an image showing a ${color} ${animal === 'dog' ? dogType : catType} ${animal} running on a green lawn. The image should not include any human elements such as hands, feet, or any other human features.
+```
+
+![img_1.png](imgs/img7.png)
+
+최종 프롬프트 문구는 이러하다.   
+"갈색 페르시안 개가 푸른 잔디밭에 달리고 있는 모습을 보여주는 이미지를 만드세요. 이 이미지에는 사람의 손, 발, 또는 다른 어떠한 인간적 요소도 포함되지 않아야 합니다."
+
+- 이미지 업로드를 위한, Cloudinary 계정 생성 및 저장소 생성
+- 무료 사용자는 기본으로 클라우드 용량 100MB 제공
+- settings - Account 를 가면 클라우드 이름 변경가능
+
+  
