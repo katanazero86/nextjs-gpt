@@ -134,4 +134,7 @@ Create an image showing a ${color} ${animal === 'dog' ? dogType : catType} ${ani
 ![img.png](imgs/img8.png)
 
 - 생성되는 이미지 용량이 크다보니, 클라우디너리 업로드 시 webp 포맷으로 변경하여 업로드를 한다.
+- 생성된 이미지는 UI 표시가 되며, 다운로드를 하면 다운로드 처리가 되도록 하였다.
+
+![img.png](imgs/img9.png)
   
