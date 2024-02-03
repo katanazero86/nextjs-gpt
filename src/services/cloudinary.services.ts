@@ -23,12 +23,14 @@ export class CloudinaryServices {
                             format,
                             url,
                             secure_url,
+                            original_filename
                         } = result!
                         resolve({
                             public_id,
                             format,
                             url,
-                            secure_url
+                            secure_url,
+                            original_filename
                         });
                     }
                 });

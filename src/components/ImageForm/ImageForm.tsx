@@ -4,6 +4,7 @@ import {useState} from "react";
 import BasicButton from "@/components/Atoms/Buttons/BasicButton/BasicButton";
 import LoadingButton from "@/components/Atoms/Buttons/LoadingButton/LoadingButton";
 import RadioButton from "@/components/Atoms/Buttons/RadioButton/RadioButton";
+import ImageOutput from "@/components/ImageForm/ImageOutput/ImageOutput";
 
 interface CatAndDogTypes {
     [key: string]: string
@@ -31,6 +32,13 @@ export default function ImageForm() {
         dogType: 'golden retriever',
     });
     const [isLoading, setIsLoading] = useState(false);
+    const [imageResult, setImageResult] = useState<{
+        format: 'webp' | 'png';
+        originalFilename: string;
+        publicId: string;
+        secureUrl: string;
+        url: string;
+    } | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -47,7 +55,8 @@ export default function ImageForm() {
             return (
                 <>
                     {catType.map(cat => (<div key={cat} className="flex items-center mb-4">
-                        <RadioButton name='catType' value={cat} checked={imageForm.catType === cat} onChange={handleChange} color='teal'>
+                        <RadioButton name='catType' value={cat} checked={imageForm.catType === cat}
+                                     onChange={handleChange} color='teal'>
                             {CAT_AND_DOG_TYPES[cat]}
                         </RadioButton>
                     </div>))}
@@ -57,7 +66,8 @@ export default function ImageForm() {
             return (
                 <>
                     {dogType.map(dog => (<div key={dog} className="flex items-center mb-4">
-                        <RadioButton name='dogType' value={dog} checked={imageForm.dogType === dog} onChange={handleChange} color='teal'>
+                        <RadioButton name='dogType' value={dog} checked={imageForm.dogType === dog}
+                                     onChange={handleChange} color='teal'>
                             {CAT_AND_DOG_TYPES[dog]}
                         </RadioButton>
                     </div>))}
@@ -74,6 +84,8 @@ export default function ImageForm() {
                 ...imageForm
             };
             setIsLoading(true);
+            setImageResult(null);
+
             const res = await fetch('/api/openai/images', {
                 method: 'POST',
                 body: JSON.stringify(params),
@@ -81,56 +93,71 @@ export default function ImageForm() {
                     'Content-Type': 'application/json'
                 }
             });
-            const imageUrl = await res.json();
-            console.log(imageUrl);
-            // TODO: 전달받은 URL을 바로 처리하는게 아니라, S3 같은곳에 업로드 후에 제공 받기
+            const imageInfoObj = await res.json();
+
+            setImageResult({
+                format: imageInfoObj.format,
+                originalFilename: imageInfoObj.original_filename,
+                publicId: imageInfoObj.public_id,
+                secureUrl: imageInfoObj.secure_url,
+                url: imageInfoObj.url,
+            });
+
         } catch (e) {
             console.error(e)
         } finally {
             setIsLoading(false);
         }
-
     };
 
     return (
-        <form className='w-full' onSubmit={handleSubmit}>
-            <div>
-                <div className="flex items-center mb-4">
-                    <RadioButton name='animal' value='cat' checked={imageForm.animal === 'cat'} onChange={handleChange}>
-                        고양이
-                    </RadioButton>
+        <>
+            <form className='w-full' onSubmit={handleSubmit}>
+                <div>
+                    <div className="flex items-center mb-4">
+                        <RadioButton name='animal' value='cat' checked={imageForm.animal === 'cat'}
+                                     onChange={handleChange}>
+                            고양이
+                        </RadioButton>
+                    </div>
+                    <div className="flex items-center">
+                        <RadioButton name='animal' value='dog' checked={imageForm.animal === 'dog'}
+                                     onChange={handleChange}>
+                            강아지
+                        </RadioButton>
+                    </div>
                 </div>
-                <div className="flex items-center">
-                    <RadioButton name='animal' value='dog' checked={imageForm.animal === 'dog'} onChange={handleChange}>
-                        강아지
-                    </RadioButton>
+                <hr className="h-px my-4 bg-gray-400 border-0"/>
+                <div>
+                    <div className="flex items-center mb-4">
+                        <RadioButton name='color' value='black' checked={imageForm.color === 'black'}
+                                     onChange={handleChange} color='pink'>
+                            검정색
+                        </RadioButton>
+                    </div>
+                    <div className="flex items-center mb-4">
+                        <RadioButton name='color' value='white' checked={imageForm.color === 'white'}
+                                     onChange={handleChange} color='pink'>
+                            하얀색
+                        </RadioButton>
+                    </div>
+                    <div className="flex items-center">
+                        <RadioButton name='color' value='brown' checked={imageForm.color === 'brown'}
+                                     onChange={handleChange} color='pink'>
+                            갈색
+                        </RadioButton>
+                    </div>
                 </div>
-            </div>
-            <hr className="h-px my-4 bg-gray-400 border-0"/>
-            <div>
-                <div className="flex items-center mb-4">
-                    <RadioButton name='color' value='black' checked={imageForm.color === 'black'} onChange={handleChange} color='pink'>
-                        검정색
-                    </RadioButton>
+                <hr className="h-px my-4 bg-gray-400 border-0"/>
+                <div>
+                    {renderType()}
                 </div>
-                <div className="flex items-center mb-4">
-                    <RadioButton name='color' value='white' checked={imageForm.color === 'white'} onChange={handleChange} color='pink'>
-                        하얀색
-                    </RadioButton>
-                </div>
-                <div className="flex items-center">
-                    <RadioButton name='color' value='brown' checked={imageForm.color === 'brown'} onChange={handleChange} color='pink'>
-                        갈색
-                    </RadioButton>
-                </div>
-            </div>
-            <hr className="h-px my-4 bg-gray-400 border-0"/>
-            <div>
-                {renderType()}
-            </div>
-            {isLoading ? <LoadingButton wFull/> : <BasicButton type='submit' wFull>
-                이미지 생성 요청하기
-            </BasicButton>}
-        </form>
+                {isLoading ? <LoadingButton wFull/> : <BasicButton type='submit' wFull>
+                    이미지 생성 요청하기
+                </BasicButton>}
+            </form>
+            {imageResult !== null ? <ImageOutput url={imageResult.url} secureUrl={imageResult.secureUrl}
+                                                 originalFileName={imageResult.originalFilename}/> : null}
+        </>
     )
 }

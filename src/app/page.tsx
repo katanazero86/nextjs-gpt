@@ -18,7 +18,9 @@ export default function Home() {
                   AI와 질문을 주고 받아보세요!
               </p>
           </div>
-          <ChatForm />
+          <div>
+              <ChatForm />
+          </div>
       </main>
   );
 }
