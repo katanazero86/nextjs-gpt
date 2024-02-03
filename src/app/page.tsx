@@ -18,7 +18,7 @@ export default function Home() {
                   AI와 질문을 주고 받아보세요!
               </p>
           </div>
-          <div>
+          <div className='w-full'>
               <ChatForm />
           </div>
       </main>
