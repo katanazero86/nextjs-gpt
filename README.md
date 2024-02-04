@@ -2,6 +2,11 @@
 
 ---
 
+medium
+- https://medium.com/@zero86/open-ai-%ED%94%8C%EB%9E%AB%ED%8F%BC-api-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1-%EB%B0%8F-chat-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0-64c0d4d445e8
+
+---
+
 **1. 프로젝트 생성**
 
 ```
